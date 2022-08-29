@@ -1,13 +1,19 @@
 package com.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -36,6 +42,10 @@ public class UserBean {
 	@JoinColumn(name = "roleId",nullable = false)
 	private RoleBean role;
 
+	@JsonIgnore
+	@ManyToMany(mappedBy = "users")
+	private Set<GroupBean> groups = new HashSet<>();
+	
 	public Integer getUserId() {
 		return userId;
 	}
@@ -90,6 +100,14 @@ public class UserBean {
 
 	public void setRole(RoleBean role) {
 		this.role = role;
+	}
+
+	public Set<GroupBean> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<GroupBean> groups) {
+		this.groups = groups;
 	}
 	
 	

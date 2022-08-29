@@ -1,20 +1,25 @@
 package com.bean;
 
+import java.util.List;
+
 public class ResponceBean<T> {
 	
 	private	T data;
-	private	String message;
+	private	List<String> message;
 	private int statusCode;
+	private String resMsg;
+	
 	public T getData() {
 		return data;
 	}
 	public void setData(T data) {
 		this.data = data;
 	}
-	public String getMessage() {
+	
+	public List<String> getMessage() {
 		return message;
 	}
-	public void setMessage(String message) {
+	public void setMessage(List<String> message) {
 		this.message = message;
 	}
 	public int getStatusCode() {
@@ -22,6 +27,12 @@ public class ResponceBean<T> {
 	}
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
+	}
+	public String getResMsg() {
+		return resMsg;
+	}
+	public void setResMsg(String resMsg) {
+		this.resMsg = resMsg;
 	}
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bean.ResponceBean;
 import com.bean.RoleBean;
 import com.repository.RoleRepository;
 
@@ -33,7 +34,11 @@ public class RoleController {
 				String e = result.getFieldErrors().get(i).getDefaultMessage();
 				errorMessage.add(e);
 			}
-			return ResponseEntity.badRequest().body(errorMessage);
+			ResponceBean<RoleBean> resRole=  new ResponceBean<>();
+			resRole.setMessage(errorMessage);
+			resRole.setData(roleBean);
+			resRole.setStatusCode(400);
+			return ResponseEntity.badRequest().body(resRole);
 		} else {
 			roleRepository.save(roleBean);
 			return ResponseEntity.ok().body(roleBean);
@@ -79,6 +84,11 @@ public class RoleController {
 				String e = result.getFieldErrors().get(i).getDefaultMessage();
 				errorMessage.add(e);
 			}
+			ResponceBean<RoleBean> resRole=  new ResponceBean<>();
+			resRole.setMessage(errorMessage);
+			resRole.setData(roleBean);
+			resRole.setStatusCode(400);
+
 			return ResponseEntity.badRequest().body(errorMessage);
 		} else {
 			roleRepository.save(roleBean);

@@ -12,4 +12,5 @@ public interface UserRepository extends CrudRepository<UserBean, Integer> {
 	UserBean findByUserId(Integer userId);
 	UserBean findByEmail(String email);
 	List<UserBean> findAll();
+	
 }
